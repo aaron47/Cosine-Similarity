@@ -55,7 +55,7 @@ class AllMpnetBaseV2:
         
         return (max_similarity, best_pair)
 
-    def encode_sentence_and_normalise(self, sentence: str) -> torch.Tensor:
+    def encode_sentence_and_normalise(self, sentence: str):
         # Tokenize the sentence
         encoded_input = self.tokenizer(sentence, padding=True, truncation=True, return_tensors="pt")
 
@@ -69,7 +69,8 @@ class AllMpnetBaseV2:
         # Normalise embeddings
         sentence_embedding = F.normalize(sentence_embedding, p=2, dim=1)
 
-        return sentence_embedding
+        # Squeeze the tensor into a one dimensional tensor, then return it as a list
+        return sentence_embedding.squeeze().tolist()
     
     """
         Mean Pooling - Take attention mask into account for correct averaging:
