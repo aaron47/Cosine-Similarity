@@ -55,7 +55,7 @@ class AllMpnetBaseV2:
         
         return (max_similarity, best_pair)
 
-    def encode_sentence_and_normalise(self, sentence: str):
+    def encode_sentence_and_normalise(self, sentence: str) -> list:
         # Tokenize the sentence
         encoded_input = self.tokenizer(sentence, padding=True, truncation=True, return_tensors="pt")
 
